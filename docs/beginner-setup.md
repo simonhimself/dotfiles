@@ -321,6 +321,7 @@ gh pr create        # Create pull request
 - [ ] Configure git identity
 - [ ] (Optional) Install fd: `brew install fd`
 - [ ] (Optional) Install ripgrep: `brew install ripgrep`
+- [ ] (Optional) Create global CLAUDE.md: `~/.claude/CLAUDE.md` for persistent Claude Code preferences
 
 ---
 
