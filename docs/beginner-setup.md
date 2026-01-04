@@ -318,7 +318,7 @@ gh pr create        # Create pull request
 - [x] Reload shell: `source ~/.zshrc`
 - [ ] Install fzf: `brew install fzf && $(brew --prefix)/opt/fzf/install`
 - [ ] Install bat: `brew install bat`
-- [ ] Configure git identity
+- [x] Configure git identity
 - [ ] (Optional) Install fd: `brew install fd`
 - [ ] (Optional) Install ripgrep: `brew install ripgrep`
 - [ ] (Optional) Create global CLAUDE.md: `~/.claude/CLAUDE.md` for persistent Claude Code preferences
