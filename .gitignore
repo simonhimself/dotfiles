@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Backup files created by install.sh
+*.backup
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Sensitive files (add any you don't want to commit)
+# .secrets
+# .env
