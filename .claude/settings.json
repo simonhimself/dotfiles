@@ -9,7 +9,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'branch=$(git branch --show-current 2>/dev/null); if [ \"$branch\" = \"main\" ]; then echo \"Cannot edit on main branch. Run: git checkout -b feature/name\" >&2; exit 2; fi'"
+            "command": "bash -c 'case \"$PWD\" in /Users/simonhimself/Documents/dev/*) ;; *) exit 0 ;; esac; branch=$(git branch --show-current 2>/dev/null); if [ \"$branch\" = \"main\" ]; then echo \"Cannot edit on main branch. Run: git checkout -b feature/name\" >&2; exit 2; fi'"
           }
         ]
       }
