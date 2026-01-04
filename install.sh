@@ -51,6 +51,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     create_symlink "$DOTFILES_DIR/.config/ghostty/config" "$GHOSTTY_CONFIG"
 fi
 
+# Claude Code config
+mkdir -p "$HOME/.claude"
+create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+create_symlink "$DOTFILES_DIR/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
+
 echo ""
 echo "========================================"
 echo "Done! Dotfiles installed successfully."
