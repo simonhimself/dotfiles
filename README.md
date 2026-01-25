@@ -9,6 +9,7 @@ Personal configuration files for macOS development environment.
 | `.zshrc` | Shell aliases and configuration |
 | `.gitconfig` | Git user settings and preferences |
 | `.config/ghostty/config` | Ghostty terminal settings |
+| `.config/opencode/` | OpenCode skills and configuration |
 | `.claude/settings.json` | Claude Code hooks and preferences |
 | `.claude/statusline.sh` | Custom Claude Code status line |
 

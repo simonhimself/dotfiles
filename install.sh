@@ -56,6 +56,9 @@ mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
+# OpenCode config and skills
+create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
+
 echo ""
 echo "========================================"
 echo "Done! Dotfiles installed successfully."
