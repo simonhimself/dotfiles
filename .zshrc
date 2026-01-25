@@ -31,3 +31,4 @@ alias cc="claude"           # Quick access to Claude Code
 alias claude-yolo="claude --dangerously-skip-permissions --chrome"
 
 
+export PATH="$HOME/.local/bin:$PATH"

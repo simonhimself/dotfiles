@@ -70,3 +70,6 @@ auto-update-channel = tip
 
 # Shift+Enter sends Escape+Return (useful for multi-line input)
 keybind = shift+enter=text:\x1b\r
+
+# Theme
+theme = dark:Catppuccin Frappe,light:Belafonte Day
