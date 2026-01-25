@@ -32,3 +32,6 @@ alias claude-yolo="claude --dangerously-skip-permissions --chrome"
 
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
