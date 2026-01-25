@@ -6,47 +6,61 @@ Load the Cloudflare platform skill and help with any Cloudflare development task
 
 ## Workflow
 
-### Step 1: Load cloudflare skill
+### Step 1: Check for --update-skill flag
+
+If $ARGUMENTS contains `--update-skill`:
+
+1. Determine install location by checking which exists:
+   - Local: `.opencode/skill/cloudflare/`
+   - Global: `~/.config/opencode/skill/cloudflare/`
+
+2. Run the appropriate install command:
+   ```bash
+   # For local installation
+   curl -fsSL https://raw.githubusercontent.com/dmmulroy/cloudflare-skill/main/install.sh | bash
+
+   # For global installation
+   curl -fsSL https://raw.githubusercontent.com/dmmulroy/cloudflare-skill/main/install.sh | bash -s -- --global
+   ```
+
+3. Output success message and stop (do not continue to other steps).
+
+### Step 2: Load cloudflare skill
 
 ```
 skill({ name: 'cloudflare' })
 ```
 
-### Step 2: Identify task type from user request
+### Step 3: Identify task type from user request
 
 Analyze $ARGUMENTS to determine:
-- **Product(s) needed** - Use the decision trees in SKILL.md:
-  - "I need to run code" -> workers, pages, durable-objects, workflows, etc.
-  - "I need to store data" -> kv, d1, r2, queues, vectorize, etc.
-  - "I need AI/ML" -> workers-ai, vectorize, agents-sdk, etc.
-  - "I need networking" -> tunnel, spectrum, argo-smart-routing, etc.
-  - "I need security" -> waf, ddos, bot-management, turnstile, etc.
-  - "I need media" -> images, stream, browser-rendering, etc.
-  - "I need IaC" -> pulumi, terraform, api
-- **Task type** - new project, feature implementation, debugging, or configuration
+- **Product(s) needed** (Workers, D1, R2, Durable Objects, etc.)
+- **Task type** (new project setup, feature implementation, debugging, config)
 
-### Step 3: Read relevant reference files
+Use decision trees in SKILL.md to select correct product.
 
-Based on the identified product(s), read from `references/<product>/`:
+### Step 4: Read relevant reference files
 
-| Task Type | Files to Read |
-|-----------|---------------|
-| New project setup | `README.md` + `configuration.md` |
+Based on task type, read from `references/<product>/`:
+
+| Task | Files to Read |
+|------|---------------|
+| New project | `README.md` + `configuration.md` |
 | Implement feature | `README.md` + `api.md` + `patterns.md` |
-| Debug/troubleshoot | `README.md` + `gotchas.md` |
-| Quick overview | `README.md` only |
+| Debug/troubleshoot | `gotchas.md` |
+| All-in-one (monolithic) | `SKILL.md` |
 
-### Step 4: Execute task
+### Step 5: Execute task
 
-Apply Cloudflare-specific patterns and APIs from the references to complete the user's request.
+Apply Cloudflare-specific patterns and APIs from references to complete the user's request.
 
-### Step 5: Summarize
+### Step 6: Summarize
 
 ```
 === Cloudflare Task Complete ===
 
 Product(s): <products used>
-Files referenced: <list of reference files consulted>
+Files referenced: <reference files consulted>
 
 <brief summary of what was done>
 ```
