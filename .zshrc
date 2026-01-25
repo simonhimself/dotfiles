@@ -35,3 +35,9 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# ============================================
+# MACHINE-SPECIFIC CONFIG
+# ============================================
+# Source local overrides (not tracked in git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
