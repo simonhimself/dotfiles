@@ -11,8 +11,8 @@ Load the Cloudflare platform skill and help with any Cloudflare development task
 If $ARGUMENTS contains `--update-skill`:
 
 1. Determine install location by checking which exists:
-   - Local: `.opencode/skill/cloudflare/`
-   - Global: `~/.config/opencode/skill/cloudflare/`
+   - Local: `.opencode/skills/cloudflare/`
+   - Global: `~/.config/opencode/skills/cloudflare/`
 
 2. Run the appropriate install command:
    ```bash
