@@ -5,6 +5,7 @@
 
 # Backup files created by install.sh
 *.backup
+*.bak
 
 # Editor files
 *.swp
