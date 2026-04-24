@@ -59,6 +59,10 @@ create_symlink "$DOTFILES_DIR/.claude/statusline.sh" "$HOME/.claude/statusline.s
 # OpenCode config and skills
 create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
 
+# Shared agent skills (installed via `npx skills add ...`)
+# This location is read by OpenCode, Claude Code, Cursor, and other agents
+create_symlink "$DOTFILES_DIR/.agents" "$HOME/.agents"
+
 echo ""
 echo "========================================"
 echo "Done! Dotfiles installed successfully."
