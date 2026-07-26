@@ -27,6 +27,7 @@
     ],
     "defaultMode": "default"
   },
+  "outputStyle": "Explanatory",
   "preferredNotifChannel": "ghostty",
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
