@@ -1,10 +1,3 @@
-# OPENSPEC:START
-# OpenSpec shell completions configuration
-fpath=("$HOME/.zsh/completions" $fpath)
-autoload -Uz compinit
-compinit
-# OPENSPEC:END
-
 # ============================================
 # NAVIGATION
 # ============================================
@@ -36,7 +29,6 @@ alias cp="cp -i"            # Confirm before overwriting
 # ============================================
 alias cc="claude"           # Quick access to Claude Code
 alias claude-yolo="claude --dangerously-skip-permissions --chrome"
-
 
 export PATH="$HOME/.local/bin:$PATH"
 
