@@ -1,0 +1,120 @@
+{
+  "lightThemeId": "jetbrains-light",
+  "darkThemeId": "flexoki-dark",
+  "notifyOnSubtasks": true,
+  "notifyOnCompletion": true,
+  "notifyOnError": true,
+  "notifyOnQuestion": true,
+  "notificationTemplates": {
+    "completion": {
+      "title": "{agent_name} is ready",
+      "message": "{model_name} completed the task"
+    },
+    "error": {
+      "title": "Tool error",
+      "message": "{last_message}"
+    },
+    "question": {
+      "title": "Input needed",
+      "message": "{last_message}"
+    },
+    "subtask": {
+      "title": "{agent_name} is ready",
+      "message": "{model_name} completed the task"
+    }
+  },
+  "themeId": "jetbrains-light",
+  "themeVariant": "light",
+  "useSystemTheme": false,
+  "splashBgLight": "#FFF",
+  "splashFgLight": "#000000",
+  "splashBgDark": "#171515",
+  "splashFgDark": "#CECDC3",
+  "showReasoningTraces": false,
+  "mobileKeyboardMode": "native",
+  "favoriteModels": [],
+  "hiddenModels": [
+    {
+      "providerID": "zai-coding-plan",
+      "modelID": "glm-5-turbo"
+    },
+    {
+      "providerID": "zai-coding-plan",
+      "modelID": "glm-5v-turbo"
+    },
+    {
+      "providerID": "zai-coding-plan",
+      "modelID": "glm-5.1"
+    },
+    {
+      "providerID": "zai-coding-plan",
+      "modelID": "glm-4.5-air"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.6-luna-fast"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.4-mini-fast"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.4-fast"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.4"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.5"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.5-fast"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.6-sol-fast"
+    },
+    {
+      "providerID": "openai",
+      "modelID": "gpt-5.3-codex-spark"
+    },
+    {
+      "providerID": "opencode",
+      "modelID": "big-pickle"
+    },
+    {
+      "providerID": "opencode",
+      "modelID": "mimo-v2.5-free"
+    },
+    {
+      "providerID": "opencode",
+      "modelID": "laguna-s-2.1-free"
+    },
+    {
+      "providerID": "opencode",
+      "modelID": "ling-3.0-flash-free"
+    },
+    {
+      "providerID": "opencode",
+      "modelID": "north-mini-code-free"
+    }
+  ],
+  "collapsedModelProviders": [],
+  "desktopKeepAwakeEnabled": false,
+  "reportUsage": false,
+  "sessionGoalDefaultBudgetEnabled": false,
+  "defaultModel": "openai/gpt-5.6-sol",
+  "defaultVariant": "high",
+  "showDeletionDialog": true,
+  "smallModelUseDefault": false,
+  "smallModelOverride": "openai/gpt-5.6-terra",
+  "dictationEnabled": true,
+  "sttProvider": "local",
+  "openInAppId": "cursor",
+  "chatRenderMode": "sorted",
+  "activityRenderMode": "collapsed"
+}

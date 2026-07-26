@@ -1,39 +1,41 @@
 {
+  "advisorModel": "opus",
+  "agentPushNotifEnabled": true,
+  "effortLevel": "medium",
+  "enabledPlugins": {
+    "cloudflare@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/simonhimself/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
+  "inputNeededNotifEnabled": true,
   "permissions": {
     "allow": [
       "mcp__pencil"
     ],
     "defaultMode": "default"
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'case \"$PWD\" in /Users/simonhimself/Documents/dev/*) ;; *) exit 0 ;; esac; branch=$(git branch --show-current 2>/dev/null); if [ \"$branch\" = \"main\" ]; then echo \"Cannot edit on main branch. Run: git checkout -b feature/name\" >&2; exit 2; fi'"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "osascript -e 'display notification \"Claude has finished\" with title \"Claude Code\" sound name \"Purr\"'"
-          }
-        ]
-      }
-    ]
-  },
+  "preferredNotifChannel": "ghostty",
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline.sh"
+    "command": "bash ~/.claude/statusline.sh",
+    "type": "command"
   },
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
-  },
-  "skipDangerousModePermissionPrompt": true
+  "switchModelsOnFlag": false,
+  "theme": "light",
+  "tui": "fullscreen",
+  "verbose": false
 }

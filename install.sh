@@ -44,6 +44,12 @@ create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 # Git config
 create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 
+# Git XDG config
+create_symlink "$DOTFILES_DIR/.config/git" "$HOME/.config/git"
+
+# GitHub CLI config
+create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
+
 # Ghostty config (macOS location)
 if [[ "$OSTYPE" == "darwin"* ]]; then
     GHOSTTY_CONFIG="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
@@ -56,7 +62,7 @@ mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
-# OpenCode config and skills
+# OpenCode config
 create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
 
 # Shared agent skills (installed via `npx skills add ...`)
