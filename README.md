@@ -12,9 +12,10 @@ Personal configuration files for macOS development environment.
 | `.config/gh/` | GitHub CLI configuration |
 | `.config/ghostty/config` | Ghostty terminal settings |
 | `.config/openchamber/preferences.json` | Portable OpenChamber preferences |
-| `.config/opencode/` | OpenCode skills and configuration |
+| `.config/opencode/` | OpenCode configuration |
 | `.claude/settings.json` | Claude Code hooks and preferences |
 | `.claude/statusline.sh` | Custom Claude Code status line |
+| `.agents/skills/` | Shared agent skills used by Codex and compatible harnesses |
 
 ## Quick Install
 
