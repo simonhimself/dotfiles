@@ -34,6 +34,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+typeset -U path
 export OPENCODE_ENABLE_EXA=1
 
 # ============================================
