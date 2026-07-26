@@ -20,7 +20,7 @@ Personal configuration files for macOS development environment.
 ## Quick Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+git clone https://github.com/simonhimself/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
@@ -39,7 +39,7 @@ If you prefer to set up manually:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+git clone https://github.com/simonhimself/dotfiles.git ~/.dotfiles
 
 # Create symlinks
 ln -s ~/.dotfiles/.zshrc ~/.zshrc

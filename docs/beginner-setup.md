@@ -3,7 +3,7 @@
 > A simple, focused setup for developers working with AI coding assistants.
 > Based on analysis of your current macOS environment.
 >
-> **Last updated:** January 4, 2026
+> **Last updated:** July 26, 2026
 
 ---
 
@@ -58,9 +58,13 @@ copy-on-select = clipboard
 
 # Automatically download updates (still asks before installing)
 auto-update = download
+auto-update-channel = tip
 
 # Shift+Enter sends Escape+Return (useful for multi-line input)
 keybind = shift+enter=text:\x1b\r
+
+# Theme
+theme = Catppuccin Frappe
 ```
 
 **Key settings explained:**
@@ -70,6 +74,8 @@ keybind = shift+enter=text:\x1b\r
 | `macos-option-as-alt` | Makes Option key work as Alt for CLI shortcuts (essential!) |
 | `copy-on-select` | Selecting text automatically copies it |
 | `auto-update` | Ghostty downloads updates automatically |
+| `auto-update-channel` | Uses Ghostty's tip update channel |
+| `theme` | Uses the Catppuccin Frappe color theme |
 
 **Reload config:** Press `Cmd+Shift+,` in Ghostty
 
@@ -155,7 +161,7 @@ Your shell config file controls how your terminal behaves.
 
 ---
 
-### 5. Git Identity Configuration ⏳ PENDING
+### 5. Git Identity Configuration
 
 Set your name and email for commits:
 
