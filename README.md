@@ -17,6 +17,11 @@ Personal configuration files for macOS development environment.
 | `.claude/statusline.sh` | Custom Claude Code status line |
 | `.agents/skills/` | Shared agent skills used by Codex and compatible harnesses |
 
+## Prerequisites
+
+- macOS
+- Node.js and npm, required for the tracked OpenCode plugin dependencies
+
 ## Quick Install
 
 ```bash
@@ -27,7 +32,8 @@ cd ~/.dotfiles
 
 The install script will:
 1. Back up any existing config files
-2. Create symlinks from your home directory to this repo
+2. Install the pinned OpenCode plugin dependencies
+3. Create symlinks from your home directory to this repo
 
 ## Documentation
 

@@ -10,6 +10,18 @@ DOTFILES_DIR="$HOME/.dotfiles"
 echo "Installing dotfiles from $DOTFILES_DIR"
 echo "========================================"
 
+# Install tracked OpenCode plugin dependencies before changing user config.
+if [ -f "$DOTFILES_DIR/.config/opencode/package-lock.json" ]; then
+    command -v npm >/dev/null 2>&1 || {
+        echo "npm is required to install OpenCode plugin dependencies." >&2
+        exit 1
+    }
+    (
+        cd "$DOTFILES_DIR/.config/opencode"
+        npm ci --ignore-scripts
+    )
+fi
+
 # Function to create symlink with backup
 create_symlink() {
     local source="$1"
@@ -64,18 +76,6 @@ create_symlink "$DOTFILES_DIR/.claude/statusline.sh" "$HOME/.claude/statusline.s
 
 # OpenCode config
 create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
-
-# Install the dependencies required by tracked OpenCode plugins.
-if [ -f "$DOTFILES_DIR/.config/opencode/package-lock.json" ]; then
-    command -v npm >/dev/null 2>&1 || {
-        echo "npm is required to install OpenCode plugin dependencies." >&2
-        exit 1
-    }
-    (
-        cd "$DOTFILES_DIR/.config/opencode"
-        npm ci --ignore-scripts
-    )
-fi
 
 # Shared agent skills (installed via `npx skills add ...`)
 # This location is read by OpenCode, Claude Code, Cursor, and other agents
