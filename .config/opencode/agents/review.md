@@ -1,6 +1,6 @@
 ---
 description: Reviews code for quality, bugs, security, and best practices. Use when you want a read-only audit of code changes or existing code without making any modifications. Should be used after writing a significant piece of code, after a PR is opened, or when the user asks to review specific files.
-mode: subagent
+mode: all
 temperature: 0.1
 permission:
   edit: deny
