@@ -8,7 +8,10 @@ Personal configuration files for macOS development environment.
 |------|---------|
 | `.zshrc` | Shell aliases and configuration |
 | `.gitconfig` | Git user settings and preferences |
+| `.config/git/` | Git XDG configuration and global ignore rules |
+| `.config/gh/` | GitHub CLI configuration |
 | `.config/ghostty/config` | Ghostty terminal settings |
+| `.config/openchamber/preferences.json` | Portable OpenChamber preferences |
 | `.config/opencode/` | OpenCode skills and configuration |
 | `.claude/settings.json` | Claude Code hooks and preferences |
 | `.claude/statusline.sh` | Custom Claude Code status line |
@@ -55,3 +58,11 @@ git push
 ```
 
 Since the config files are symlinked, any edits you make (e.g., to `~/.zshrc`) are automatically reflected in this repo.
+
+## OpenChamber
+
+OpenChamber stores preferences beside device keys and runtime state. To apply the tracked preferences on a machine where OpenChamber has been started once, run:
+
+```bash
+node ~/.dotfiles/scripts/apply-openchamber-preferences.mjs
+```

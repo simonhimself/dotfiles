@@ -44,6 +44,12 @@ create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 # Git config
 create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 
+# Git XDG config
+create_symlink "$DOTFILES_DIR/.config/git" "$HOME/.config/git"
+
+# GitHub CLI config
+create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
+
 # Ghostty config (macOS location)
 if [[ "$OSTYPE" == "darwin"* ]]; then
     GHOSTTY_CONFIG="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
