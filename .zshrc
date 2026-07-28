@@ -30,9 +30,10 @@ alias cp="cp -i"            # Confirm before overwriting
 alias cc="claude"           # Quick access to Claude Code
 alias claude-yolo="claude --dangerously-skip-permissions --chrome"
 
+# ============================================
+# PATH & ENVIRONMENT
+# ============================================
 export PATH="$HOME/.local/bin:$PATH"
-
-# opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 typeset -U path
 export OPENCODE_ENABLE_EXA=1
