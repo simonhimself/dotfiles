@@ -37,6 +37,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 typeset -U path
 export OPENCODE_ENABLE_EXA=1
+export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
 
 # ============================================
 # MACHINE-SPECIFIC CONFIG
