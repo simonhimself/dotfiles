@@ -12,6 +12,7 @@ Personal configuration files for macOS development environment.
 | `.config/gh/` | GitHub CLI configuration |
 | `.config/ghostty/config` | Ghostty terminal settings |
 | `.config/openchamber/preferences.json` | Portable OpenChamber preferences |
+| `.config/openchamber/launchagents/` | macOS environment for OpenChamber-managed OpenCode |
 | `.config/opencode/` | OpenCode configuration |
 | `.claude/settings.json` | Claude Code hooks and preferences |
 | `.claude/statusline.sh` | Custom Claude Code status line |
@@ -34,6 +35,7 @@ The install script will:
 1. Back up any existing config files
 2. Install the pinned OpenCode plugin dependencies
 3. Create symlinks from your home directory to this repo
+4. Enable background OpenCode subagents for OpenChamber on macOS
 
 ## Documentation
 
