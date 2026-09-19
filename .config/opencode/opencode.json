@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "openai/gpt-5.6-sol",
-  "default_agent": "sol-orchestrator",
+  "model": "openai/gpt-6-astra",
+  "default_agent": "astra-orchestrator",
   "permission": {
     "*": "allow",
     "bash": {
@@ -18,9 +18,9 @@
   "provider": {
     "openai": {
       "models": {
-        "gpt-5.6-sol": {
+        "gpt-6-astra": {
           "options": {
-            "reasoningEffort": "high"
+            "reasoningEffort": "medium"
           }
         }
       }

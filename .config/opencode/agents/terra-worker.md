@@ -1,7 +1,7 @@
 ---
-description: Fast, economical worker for bounded research, implementation, and verification delegated by the Sol orchestrator. Use for independent work that can run in parallel.
+description: Worker for bounded research, implementation, and verification delegated by the Astra orchestrator. Use for independent work that can run in parallel.
 mode: subagent
-model: openai/gpt-5.6-luna
+model: openai/gpt-5.6-terra
 variant: high
 permission:
   task: deny
