@@ -68,6 +68,27 @@ git push
 
 Since the config files are symlinked, any edits you make (e.g., to `~/.zshrc`) are automatically reflected in this repo.
 
+## README workflow
+
+The shared `readme-front-door` skill and OpenCode `/readme` command are regular
+files in this repository:
+
+- `.agents/skills/readme-front-door/SKILL.md`
+- `.config/opencode/commands/readme.md`
+
+The existing installer exposes them through the `~/.agents` and
+`~/.config/opencode` directory links. They do not depend on a separate local
+project-template checkout. Restart OpenCode after adding or updating them.
+
+In the project you want to improve, run `/readme` or ask your agent to use the
+`readme-front-door` skill. For a repository that is only on GitHub, provide its
+URL and explicitly ask the agent to clone it and work in that checkout.
+
+The public [project-template](https://github.com/simonhimself/project-template)
+repository retains its own copies for new projects. These dotfiles copies were
+imported from commit `0f95b46`. When changing the workflow, review and update the
+corresponding files in both repositories deliberately; they do not auto-sync.
+
 ## OpenChamber
 
 OpenChamber stores preferences beside device keys and runtime state. To apply the tracked preferences on a machine where OpenChamber has been started once, run:
