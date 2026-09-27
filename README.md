@@ -73,7 +73,7 @@ Since the config files are symlinked, any edits you make (e.g., to `~/.zshrc`) a
 The shared `readme-front-door` skill and OpenCode `/readme` command are regular
 files in this repository:
 
-- `.agents/skills/readme-front-door/SKILL.md`
+- `.agents/skills/1-my-skills/readme-front-door/SKILL.md`
 - `.config/opencode/commands/readme.md`
 
 The existing installer exposes them through the `~/.agents` and

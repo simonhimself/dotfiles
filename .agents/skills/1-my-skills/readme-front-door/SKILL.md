@@ -1,6 +1,6 @@
 ---
 name: readme-front-door
-description: Create or improve a project README with a benefit-first introduction, useful visual or example, clear try/install path, and linked technical details. Use when asked to write, rewrite, standardize, or improve a README or repository showcase.
+description: Create or improve a project README with a benefit-first introduction, useful visual or example, clear try/install path, and linked technical details, and keep the GitHub About section (description, website, topics) in sync. Use when asked to write, rewrite, standardize, or improve a README or repository showcase.
 ---
 
 # Give the project a clear introduction
@@ -58,6 +58,28 @@ Keep existing API, contribution, license, and attribution material where useful.
   and distinguish UI-only or mocked development from full operation.
 - Do not overwrite existing agent configuration to install this standard.
 
+## GitHub About section
+
+Always update the repository's About section along with the README, so the two
+describe the project the same way. Skip this step only if the project has no
+GitHub remote or `gh` is not authenticated. If you skip it, say why.
+
+1. Read the current values:
+   `gh repo view <owner/repo> --json description,homepageUrl,repositoryTopics`.
+2. Draft values from the README you just wrote:
+   - **Description:** the one-sentence benefit, optionally followed by a short
+     stack hint. Keep it under about 150 characters with no emoji or hype.
+   - **Website:** the real live link from the Try/install section. Leave it empty
+     if there is none. Never use a local or preview URL.
+   - **Topics:** 4–8 lowercase, hyphenated topics covering the problem domain
+     and the main platform/language. Skip generic tags such as `project`.
+3. Keep existing values that are accurate. Replace only values that are empty,
+   stale, or contradict the README. Add topics rather than removing them unless
+   they are clearly wrong.
+4. Apply the changes:
+   `gh repo edit <owner/repo> --description "…" --homepage "…" --add-topic …`,
+   then re-read with `gh repo view` to confirm they saved.
+
 ## Verify and finish
 
 - Check local link targets, asset paths, code fences, and any diagrams.
@@ -67,8 +89,10 @@ Keep existing API, contribution, license, and attribution material where useful.
   they appear in the README.
 - Review the rendered result when a suitable preview is available.
 - Check the diff for accidental deletions, placeholders, secrets, and unsupported claims.
-- Summarize the revised structure, moved docs, new assets, and verification.
-- Commit, push, publish, or deploy only when the user requests it.
+- Summarize the revised structure, moved docs, new assets, About section changes
+  (old → new), and verification.
+- Commit, push, publish, or deploy only when the user requests it. The About
+  section update above is the one exception, because it is part of this skill.
 
 Reference style: https://github.com/simonhimself/ytdw#readme
 Canonical kit: https://github.com/simonhimself/project-template
