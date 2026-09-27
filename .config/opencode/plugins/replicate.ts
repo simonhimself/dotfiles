@@ -1,4 +1,4 @@
-import { type Plugin, tool } from "@opencode-ai/plugin"
+import { Plugin } from "@opencode/plugin"
 
 const REPLICATE_API_BASE = "https://api.replicate.com/v1"
 
@@ -19,6 +19,10 @@ function authHeaders(apiToken: string): Record<string, string> {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function text(content: string) {
+  return { content }
 }
 
 // ── Type definitions ──────────────────────────────────────
@@ -78,35 +82,43 @@ interface PredictionResponse {
 
 // ── Plugin ────────────────────────────────────────────────
 
-export const ReplicatePlugin: Plugin = async () => {
-  return {
-    tool: {
+export default Plugin.define({
+  id: "replicate",
+  async setup(ctx) {
+    await ctx.tool.transform((editor) => {
       // ── replicate_search ──────────────────────────────
-      replicate_search: tool({
+      editor.add({
+        name: "replicate_search",
         description:
           "Search for models on Replicate. Returns model names, descriptions, run counts, " +
           "official status, and tags. Use this to find models for image generation, text " +
           "generation, audio, video, etc.",
-        args: {
-          query: tool.schema
-            .string()
-            .describe(
-              "Search query (e.g. 'image generation', 'lip sync', 'text to speech')",
-            ),
+        input: {
+          type: "object",
+          properties: {
+            query: {
+              type: "string",
+              description:
+                "Search query (e.g. 'image generation', 'lip sync', 'text to speech')",
+            },
+          },
+          required: ["query"],
+          additionalProperties: false,
         },
-        async execute(args) {
+        async execute(input) {
+          const { query } = input as { query: string }
           const apiToken = getApiToken()
-          const url = `${REPLICATE_API_BASE}/search?query=${encodeURIComponent(args.query)}`
+          const url = `${REPLICATE_API_BASE}/search?query=${encodeURIComponent(query)}`
           const response = await fetch(url, { headers: authHeaders(apiToken) })
 
           if (!response.ok) {
             const error = await response.text()
-            return `ERROR: Search failed (${response.status}): ${error}`
+            return text(`ERROR: Search failed (${response.status}): ${error}`)
           }
 
           const data = (await response.json()) as SearchResponse
           if (!data.models?.length) {
-            return "No models found."
+            return text("No models found.")
           }
 
           // Enrich results with official status and creation date
@@ -157,30 +169,37 @@ export const ReplicatePlugin: Plugin = async () => {
               .join("\n")
           }
 
-          return result
+          return text(result)
         },
-      }),
+      })
 
       // ── replicate_schema ──────────────────────────────
-      replicate_schema: tool({
+      editor.add({
+        name: "replicate_schema",
         description:
           "Get the input/output schema for a Replicate model. Use this before running a " +
           "model to understand what inputs it accepts and what it returns.",
-        args: {
-          model: tool.schema
-            .string()
-            .describe(
-              "Model identifier in 'owner/name' format (e.g. 'black-forest-labs/flux-schnell')",
-            ),
+        input: {
+          type: "object",
+          properties: {
+            model: {
+              type: "string",
+              description:
+                "Model identifier in 'owner/name' format (e.g. 'black-forest-labs/flux-schnell')",
+            },
+          },
+          required: ["model"],
+          additionalProperties: false,
         },
-        async execute(args) {
+        async execute(input) {
+          const { model } = input as { model: string }
           const apiToken = getApiToken()
-          const url = `${REPLICATE_API_BASE}/models/${args.model}`
+          const url = `${REPLICATE_API_BASE}/models/${model}`
           const response = await fetch(url, { headers: authHeaders(apiToken) })
 
           if (!response.ok) {
             const error = await response.text()
-            return `ERROR: Failed to get model (${response.status}): ${error}`
+            return text(`ERROR: Failed to get model (${response.status}): ${error}`)
           }
 
           const data = (await response.json()) as ModelResponse
@@ -210,38 +229,50 @@ export const ReplicatePlugin: Plugin = async () => {
             )
           }
 
-          return parts.join("\n")
+          return text(parts.join("\n"))
         },
-      }),
+      })
 
       // ── replicate_run ─────────────────────────────────
-      replicate_run: tool({
+      editor.add({
+        name: "replicate_run",
         description:
           "Run a model on Replicate. Tries sync mode (up to 60s wait). If the model isn't " +
           "done yet, polls every 2 seconds until completion, collecting logs along the way. " +
           "For official models use 'owner/name'. For community models use " +
           "'owner/name:version_id'. Use replicate_schema first to understand the model's inputs.",
-        args: {
-          model: tool.schema
-            .string()
-            .describe(
-              "Model identifier. Official: 'owner/name' (e.g. 'black-forest-labs/flux-schnell'). " +
-              "Community: 'owner/name:version_id'.",
-            ),
-          input: tool.schema
-            .record(tool.schema.string(), tool.schema.unknown())
-            .describe("Model input parameters as a JSON object"),
+        input: {
+          type: "object",
+          properties: {
+            model: {
+              type: "string",
+              description:
+                "Model identifier. Official: 'owner/name' (e.g. 'black-forest-labs/flux-schnell'). " +
+                "Community: 'owner/name:version_id'.",
+            },
+            input: {
+              type: "object",
+              description: "Model input parameters as a JSON object",
+              additionalProperties: true,
+            },
+          },
+          required: ["model", "input"],
+          additionalProperties: false,
         },
-        async execute(args) {
+        async execute(input) {
+          const { model, input: modelInput } = input as {
+            model: string
+            input: Record<string, unknown>
+          }
           const apiToken = getApiToken()
-          const hasVersion = args.model.includes(":")
+          const hasVersion = model.includes(":")
 
           const url = hasVersion
             ? `${REPLICATE_API_BASE}/predictions`
-            : `${REPLICATE_API_BASE}/models/${args.model}/predictions`
+            : `${REPLICATE_API_BASE}/models/${model}/predictions`
           const body = hasVersion
-            ? { version: args.model.split(":")[1], input: args.input }
-            : { input: args.input }
+            ? { version: model.split(":")[1], input: modelInput }
+            : { input: modelInput }
 
           const response = await fetch(url, {
             method: "POST",
@@ -254,20 +285,20 @@ export const ReplicatePlugin: Plugin = async () => {
 
           if (!response.ok) {
             const error = await response.text()
-            return `ERROR: Prediction failed (${response.status}): ${error}`
+            return text(`ERROR: Prediction failed (${response.status}): ${error}`)
           }
 
           let prediction = (await response.json()) as PredictionResponse
           const predictionUrl = `https://replicate.com/p/${prediction.id}`
 
           if (prediction.status === "failed") {
-            return `ERROR: Prediction ${prediction.id} failed: ${prediction.error}\n\n${predictionUrl}`
+            return text(`ERROR: Prediction ${prediction.id} failed: ${prediction.error}\n\n${predictionUrl}`)
           }
 
           if (prediction.status === "succeeded") {
             const time = prediction.metrics?.predict_time
             const timeStr = time ? ` (${time.toFixed(2)}s)` : ""
-            return (
+            return text(
               `Prediction ${prediction.id} succeeded${timeStr}.\n\n${predictionUrl}\n\n` +
               `Output:\n${JSON.stringify(prediction.output, null, 2)}`
             )
@@ -291,7 +322,7 @@ export const ReplicatePlugin: Plugin = async () => {
             })
             if (!pollRes.ok) {
               const error = await pollRes.text()
-              return `ERROR: Failed to poll prediction (${pollRes.status}): ${error}`
+              return text(`ERROR: Failed to poll prediction (${pollRes.status}): ${error}`)
             }
 
             prediction = (await pollRes.json()) as PredictionResponse
@@ -302,31 +333,35 @@ export const ReplicatePlugin: Plugin = async () => {
           }
 
           if (prediction.status === "failed") {
-            return (
+            return text(
               `ERROR: Prediction ${prediction.id} failed: ${prediction.error}\n\n${predictionUrl}` +
               (allLogs ? `\n\nLogs:\n${allLogs}` : "")
             )
           }
 
           if (prediction.status === "canceled") {
-            return `Prediction ${prediction.id} was canceled.\n\n${predictionUrl}`
+            return text(`Prediction ${prediction.id} was canceled.\n\n${predictionUrl}`)
           }
 
           const time = prediction.metrics?.predict_time
           const timeStr = time ? ` (${time.toFixed(2)}s)` : ""
-          return (
+          return text(
             `Prediction ${prediction.id} succeeded${timeStr}.\n\n${predictionUrl}\n\n` +
             `Output:\n${JSON.stringify(prediction.output, null, 2)}` +
             (allLogs ? `\n\nLogs:\n${allLogs}` : "")
           )
         },
-      }),
+      })
 
       // ── replicate_whoami ──────────────────────────────
-      replicate_whoami: tool({
+      editor.add({
+        name: "replicate_whoami",
         description:
           "Get the Replicate username for the currently authenticated user.",
-        args: {},
+        input: {
+          type: "object",
+          additionalProperties: false,
+        },
         async execute() {
           const apiToken = getApiToken()
           const res = await fetch(`${REPLICATE_API_BASE}/account`, {
@@ -334,16 +369,16 @@ export const ReplicatePlugin: Plugin = async () => {
           })
           if (!res.ok) {
             const error = await res.text()
-            return `ERROR: Failed to get account info (${res.status}): ${error}`
+            return text(`ERROR: Failed to get account info (${res.status}): ${error}`)
           }
           const data = (await res.json()) as {
             type: string
             username: string
             name: string
           }
-          return `Logged in as: ${data.username} (${data.name}, type: ${data.type})`
+          return text(`Logged in as: ${data.username} (${data.name}, type: ${data.type})`)
         },
-      }),
-    },
-  }
-}
+      })
+    })
+  },
+})

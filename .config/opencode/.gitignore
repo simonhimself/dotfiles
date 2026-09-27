@@ -1,2 +1,5 @@
 node_modules/
 bun.lock
+secrets/
+panes/
+service.json

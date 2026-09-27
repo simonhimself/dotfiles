@@ -27,6 +27,16 @@
     }
   },
   "mcp": {
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa",
+      "enabled": true,
+      "oauth": false,
+      "headers": {
+        "x-api-key": "{file:~/.config/opencode/secrets/exa-api-key}"
+      },
+      "timeout": 60000
+    },
     "chrome": {
       "type": "local",
       "command": [
@@ -50,15 +60,6 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "enabled": true
-    },
-    "pencil": {
-      "command": [
-        "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64",
-        "--app",
-        "desktop"
-      ],
-      "enabled": true,
-      "type": "local"
     },
     "cloudflare": {
       "type": "remote",
@@ -91,5 +92,16 @@
       "enabled": true,
       "timeout": 15000
     }
-  }
+  },
+  "plugins": [
+    {
+      "package": "/Users/simonhimself/.dotfiles/.config/opencode/panes/opencode-panes",
+      "options": {
+        "apiBaseUrl": "https://opencode-panes.simons.workers.dev",
+        "uploadKey": "{file:~/.config/opencode/secrets/opencode-panes-create-key}"
+      }
+    },
+    "@openchamber/opencode-claude"
+  ],
+  "warming": true
 }
