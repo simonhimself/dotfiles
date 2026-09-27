@@ -25,18 +25,11 @@ alias mv="mv -i"            # Confirm before overwriting
 alias cp="cp -i"            # Confirm before overwriting
 
 # ============================================
-# CLAUDE CODE
-# ============================================
-alias cc="claude"           # Quick access to Claude Code
-alias claude-yolo="claude --dangerously-skip-permissions --chrome"
-
-# ============================================
 # PATH & ENVIRONMENT
 # ============================================
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 typeset -U path
-export OPENCODE_ENABLE_EXA=1
 export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
 
 # ============================================
