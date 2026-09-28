@@ -30,7 +30,6 @@ alias cp="cp -i"            # Confirm before overwriting
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 typeset -U path
-export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
 
 # ============================================
 # MACHINE-SPECIFIC CONFIG

@@ -72,19 +72,6 @@ fi
 # OpenCode config
 create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
 
-# OpenChamber background subagents (macOS user launch environment)
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    BACKGROUND_SUBAGENTS_LABEL="dev.openchamber.background-subagents"
-    BACKGROUND_SUBAGENTS_PLIST="$HOME/Library/LaunchAgents/$BACKGROUND_SUBAGENTS_LABEL.plist"
-    create_symlink \
-        "$DOTFILES_DIR/.config/openchamber/launchagents/$BACKGROUND_SUBAGENTS_LABEL.plist" \
-        "$BACKGROUND_SUBAGENTS_PLIST"
-
-    launchctl setenv OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS true
-    launchctl bootout "gui/$(id -u)/$BACKGROUND_SUBAGENTS_LABEL" >/dev/null 2>&1 || true
-    launchctl bootstrap "gui/$(id -u)" "$BACKGROUND_SUBAGENTS_PLIST"
-fi
-
 # Shared agent skills (installed via `npx skills add ...`)
 # This location is read by OpenCode, Claude Code, Cursor, and other agents
 create_symlink "$DOTFILES_DIR/.agents" "$HOME/.agents"

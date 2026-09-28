@@ -12,7 +12,6 @@ Personal configuration files for macOS development environment.
 | `.config/gh/` | GitHub CLI configuration |
 | `.config/ghostty/config` | Ghostty terminal settings |
 | `.config/openchamber/preferences.json` | Portable OpenChamber preferences |
-| `.config/openchamber/launchagents/` | macOS environment for OpenChamber-managed OpenCode |
 | `.config/opencode/` | OpenCode configuration |
 | `.claude/settings.json` | Claude Code hooks and preferences |
 | `.claude/statusline.sh` | Custom Claude Code status line |
