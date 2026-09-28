@@ -2,24 +2,19 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "openai/gpt-6-astra",
   "default_agent": "astra-orchestrator",
-  "permission": {
-    "*": "allow",
-    "bash": {
-      "*": "allow",
-      "rm *": "ask",
-      "rmdir *": "ask",
-      "git push *": "ask",
-      "git checkout *": "ask"
-    }
-  },
-  "instructions": [
-    "https://opencode.school/api/instructions/crafty-maker-1390"
+  "permissions": [
+    { "action": "*", "resource": "*", "effect": "allow" },
+    { "action": "shell", "resource": "*", "effect": "allow" },
+    { "action": "shell", "resource": "rm *", "effect": "ask" },
+    { "action": "shell", "resource": "rmdir *", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "git checkout *", "effect": "ask" }
   ],
-  "provider": {
+  "providers": {
     "openai": {
       "models": {
         "gpt-6-astra": {
-          "options": {
+          "settings": {
             "reasoningEffort": "medium"
           }
         }
@@ -27,70 +22,61 @@
     }
   },
   "mcp": {
-    "exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa",
-      "enabled": true,
-      "oauth": false,
-      "headers": {
-        "x-api-key": "{file:~/.config/opencode/secrets/exa-api-key}"
+    "servers": {
+      "exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa",
+        "oauth": false,
+        "headers": {
+          "x-api-key": "{file:~/.config/opencode/secrets/exa-api-key}"
+        },
+        "timeout": {
+          "catalog": 60000,
+          "execution": 60000
+        }
       },
-      "timeout": 60000
-    },
-    "chrome": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest"
-      ],
-      "enabled": false
-    },
-    "chrome-headless": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--headless"
-      ],
-      "enabled": false
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "enabled": true
-    },
-    "cloudflare": {
-      "type": "remote",
-      "url": "https://mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "cloudflare-docs": {
-      "type": "remote",
-      "url": "https://docs.mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "cloudflare-bindings": {
-      "type": "remote",
-      "url": "https://bindings.mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "cloudflare-builds": {
-      "type": "remote",
-      "url": "https://builds.mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "cloudflare-observability": {
-      "type": "remote",
-      "url": "https://observability.mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "ibkr": {
-      "type": "remote",
-      "url": "https://api.ibkr.com/v1/api/mcp-public",
-      "enabled": true,
-      "timeout": 15000
+      "chrome": {
+        "type": "local",
+        "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
+        "disabled": true
+      },
+      "chrome-headless": {
+        "type": "local",
+        "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--headless"],
+        "disabled": true
+      },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp"
+      },
+      "cloudflare": {
+        "type": "remote",
+        "url": "https://mcp.cloudflare.com/mcp"
+      },
+      "cloudflare-docs": {
+        "type": "remote",
+        "url": "https://docs.mcp.cloudflare.com/mcp"
+      },
+      "cloudflare-bindings": {
+        "type": "remote",
+        "url": "https://bindings.mcp.cloudflare.com/mcp"
+      },
+      "cloudflare-builds": {
+        "type": "remote",
+        "url": "https://builds.mcp.cloudflare.com/mcp"
+      },
+      "cloudflare-observability": {
+        "type": "remote",
+        "url": "https://observability.mcp.cloudflare.com/mcp"
+      },
+      "ibkr": {
+        "type": "remote",
+        "url": "https://api.ibkr.com/v1/api/mcp-public",
+        "timeout": {
+          "catalog": 15000,
+          "execution": 15000
+        }
+      }
     }
   },
   "plugins": [

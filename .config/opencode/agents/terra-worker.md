@@ -1,15 +1,14 @@
 ---
 description: Execution worker for bounded research, implementation, and verification delegated by the Astra orchestrator, working sequentially or in parallel with independently scoped workers.
 mode: subagent
-model: openai/gpt-5.6-terra
-variant: high
-permission:
-  task: deny
-  question: deny
-  todowrite: deny
-  openchamber: deny
-  openchamber_web: deny
-  "replicate_*": deny
+model: openai/gpt-5.6-terra#high
+permissions:
+  - { action: subagent, resource: "*", effect: deny }
+  - { action: question, resource: "*", effect: deny }
+  - { action: todowrite, resource: "*", effect: deny }
+  - { action: openchamber, resource: "*", effect: deny }
+  - { action: openchamber_web, resource: "*", effect: deny }
+  - { action: "replicate_*", resource: "*", effect: deny }
 ---
 
 Complete only the delegated scope. Do not broaden the task or duplicate work assigned to another worker.

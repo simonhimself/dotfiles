@@ -1,15 +1,13 @@
 ---
 description: Reviews code for quality, bugs, security, and best practices. Use when you want a read-only audit of code changes or existing code without making any modifications. Should be used after writing a significant piece of code, after a PR is opened, or when the user asks to review specific files.
 mode: all
-temperature: 0.1
-permission:
-  edit: deny
-  bash:
-    "*": deny
-    "git diff *": allow
-    "git log *": allow
-    "git show *": allow
-    "git blame *": allow
+permissions:
+  - { action: edit, resource: "*", effect: deny }
+  - { action: shell, resource: "*", effect: deny }
+  - { action: shell, resource: "git diff *", effect: allow }
+  - { action: shell, resource: "git log *", effect: allow }
+  - { action: shell, resource: "git show *", effect: allow }
+  - { action: shell, resource: "git blame *", effect: allow }
 ---
 
 You are a senior code reviewer with deep expertise in software architecture, security, and reliability.
