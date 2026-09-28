@@ -1,12 +1,23 @@
+import { readFileSync } from "node:fs"
+import { homedir } from "node:os"
+import { join } from "node:path"
 import { Plugin } from "@opencode/plugin"
 
 const REPLICATE_API_BASE = "https://api.replicate.com/v1"
 
+// The background OpenCode service doesn't inherit shell env vars, so fall back to
+// the git-ignored secrets file used by the other keys in this config.
+const TOKEN_FILE = join(homedir(), ".config/opencode/secrets/replicate-api-token")
+
 function getApiToken(): string {
-  const token = process.env.REPLICATE_API_TOKEN
-  if (token) return token
+  const envToken = process.env.REPLICATE_API_TOKEN
+  if (envToken) return envToken
+  try {
+    const fileToken = readFileSync(TOKEN_FILE, "utf8").trim()
+    if (fileToken) return fileToken
+  } catch {}
   throw new Error(
-    "Replicate API token not found. Set the REPLICATE_API_TOKEN environment variable.",
+    `Replicate API token not found. Set REPLICATE_API_TOKEN or create ${TOKEN_FILE}.`,
   )
 }
 
