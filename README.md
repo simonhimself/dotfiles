@@ -34,7 +34,17 @@ The install script will:
 1. Back up any existing config files
 2. Install the pinned OpenCode plugin dependencies
 3. Create symlinks from your home directory to this repo
-4. Enable background OpenCode subagents for OpenChamber on macOS
+
+### Not tracked in git
+
+These OpenCode files are git-ignored and must be added by hand on a new machine:
+
+- `.config/opencode/secrets/exa-api-key`: Exa MCP API key
+- `.config/opencode/secrets/opencode-panes-create-key`: Panes upload key
+- `.config/opencode/secrets/replicate-api-token`: Replicate API token, read by
+  the Replicate plugin when `REPLICATE_API_TOKEN` is not set
+- `.config/opencode/panes/opencode-panes/`: the Panes plugin bundle, built from
+  the opencode-panes repository
 
 ## Documentation
 
@@ -77,7 +87,8 @@ files in this repository:
 
 The existing installer exposes them through the `~/.agents` and
 `~/.config/opencode` directory links. They do not depend on a separate local
-project-template checkout. Restart OpenCode after adding or updating them.
+project-template checkout. OpenCode 2 reloads skills and commands
+automatically when these files change.
 
 In the project you want to improve, run `/readme` or ask your agent to use the
 `readme-front-door` skill. For a repository that is only on GitHub, provide its
