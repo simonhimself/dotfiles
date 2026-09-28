@@ -81,7 +81,7 @@
   },
   "plugins": [
     {
-      "package": "/Users/simonhimself/.dotfiles/.config/opencode/panes/opencode-panes",
+      "package": "./panes/opencode-panes",
       "options": {
         "apiBaseUrl": "https://opencode-panes.simons.workers.dev",
         "uploadKey": "{file:~/.config/opencode/secrets/opencode-panes-create-key}"

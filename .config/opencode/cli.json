@@ -19,7 +19,7 @@
     "verbosity": "medium",
     "image_preview": false,
     "new_location": "launch",
-    "permissions": "autoaccept"
+    "permissions": "prompt"
   },
   "animations": true,
   "tabs": {

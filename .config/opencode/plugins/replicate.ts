@@ -17,8 +17,20 @@ function authHeaders(apiToken: string): Record<string, string> {
   }
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+// Rejects early when the session is stopped so polling loops exit promptly.
+function sleep(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) return reject(signal.reason)
+    const timer = setTimeout(resolve, ms)
+    signal?.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(timer)
+        reject(signal.reason)
+      },
+      { once: true },
+    )
+  })
 }
 
 function text(content: string) {
@@ -105,11 +117,11 @@ export default Plugin.define({
           required: ["query"],
           additionalProperties: false,
         },
-        async execute(input) {
+        async execute(input, { signal }) {
           const { query } = input as { query: string }
           const apiToken = getApiToken()
           const url = `${REPLICATE_API_BASE}/search?query=${encodeURIComponent(query)}`
-          const response = await fetch(url, { headers: authHeaders(apiToken) })
+          const response = await fetch(url, { headers: authHeaders(apiToken), signal })
 
           if (!response.ok) {
             const error = await response.text()
@@ -126,7 +138,7 @@ export default Plugin.define({
             data.models.map(async (r): Promise<ModelDetail> => {
               const res = await fetch(
                 `${REPLICATE_API_BASE}/models/${r.model.owner}/${r.model.name}`,
-                { headers: authHeaders(apiToken) },
+                { headers: authHeaders(apiToken), signal },
               )
               if (!res.ok) return {}
               const d = (await res.json()) as {
@@ -191,11 +203,11 @@ export default Plugin.define({
           required: ["model"],
           additionalProperties: false,
         },
-        async execute(input) {
+        async execute(input, { signal }) {
           const { model } = input as { model: string }
           const apiToken = getApiToken()
           const url = `${REPLICATE_API_BASE}/models/${model}`
-          const response = await fetch(url, { headers: authHeaders(apiToken) })
+          const response = await fetch(url, { headers: authHeaders(apiToken), signal })
 
           if (!response.ok) {
             const error = await response.text()
@@ -259,7 +271,7 @@ export default Plugin.define({
           required: ["model", "input"],
           additionalProperties: false,
         },
-        async execute(input) {
+        async execute(input, { signal }) {
           const { model, input: modelInput } = input as {
             model: string
             input: Record<string, unknown>
@@ -281,6 +293,7 @@ export default Plugin.define({
               Prefer: "wait=60",
             },
             body: JSON.stringify(body),
+            signal,
           })
 
           if (!response.ok) {
@@ -315,10 +328,11 @@ export default Plugin.define({
             prediction.status !== "failed" &&
             prediction.status !== "canceled"
           ) {
-            await sleep(2000)
+            await sleep(2000, signal)
 
             const pollRes = await fetch(getUrl, {
               headers: authHeaders(apiToken),
+              signal,
             })
             if (!pollRes.ok) {
               const error = await pollRes.text()
@@ -362,10 +376,11 @@ export default Plugin.define({
           type: "object",
           additionalProperties: false,
         },
-        async execute() {
+        async execute(_input, { signal }) {
           const apiToken = getApiToken()
           const res = await fetch(`${REPLICATE_API_BASE}/account`, {
             headers: authHeaders(apiToken),
+            signal,
           })
           if (!res.ok) {
             const error = await res.text()
