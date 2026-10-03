@@ -43,8 +43,20 @@ These OpenCode files are git-ignored and must be added by hand on a new machine:
 - `.config/opencode/secrets/opencode-panes-create-key`: Panes upload key
 - `.config/opencode/secrets/replicate-api-token`: Replicate API token, read by
   the Replicate plugin when `REPLICATE_API_TOKEN` is not set
-- `.config/opencode/panes/opencode-panes/`: the Panes plugin bundle, built from
-  the opencode-panes repository
+
+### Panes plugin
+
+`.config/opencode/panes/opencode-panes/` holds the Panes plugin bundle, built
+from the opencode-panes repository. It is committed so a fresh clone works
+without building it. The bundle has no npm dependencies; uploads still need the
+git-ignored upload key above.
+
+After changing opencode-panes, rebuild the bundle into this folder from the
+opencode-panes checkout, then commit it here:
+
+```bash
+OPENCODE_PANES_PACKAGE_DIR=~/.dotfiles/.config/opencode/panes/opencode-panes npm run install:plugin
+```
 
 ## Documentation
 

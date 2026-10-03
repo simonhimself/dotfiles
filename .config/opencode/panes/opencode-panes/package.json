@@ -1,0 +1,6 @@
+{
+  "name": "opencode-panes",
+  "private": true,
+  "type": "module",
+  "exports": "./index.js"
+}
