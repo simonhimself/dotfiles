@@ -77,12 +77,16 @@ ln -s ~/.dotfiles/.config/ghostty/config ~/Library/Application\ Support/com.mitc
 
 ## Updating
 
-After making changes to any config file:
+After making changes to any config file, review what changed before committing,
+and stage files by name so nothing unexpected (like a secret) slips in:
 
 ```bash
 cd ~/.dotfiles
-git add .
-git commit -m "Description of changes"
+git status                      # what changed?
+git diff                        # review the changes
+git add path/to/changed-file    # stage only what you mean to commit
+git diff --staged               # double-check what will be committed
+git commit -m "type(scope): description"
 git push
 ```
 

@@ -151,12 +151,6 @@ Your shell config file controls how your terminal behaves.
 | `mv` | `mv -i` | Confirm before overwriting |
 | `cp` | `cp -i` | Confirm before overwriting |
 
-**Claude Code:**
-| Alias | Command | What It Does |
-|-------|---------|--------------|
-| `cc` | `claude` | Quick access to Claude Code |
-| `claude-yolo` | `claude --dangerously-skip-permissions --chrome` | Claude with all permissions |
-
 **Reload config:** Run `source ~/.zshrc` or open a new terminal
 
 ---
@@ -320,7 +314,7 @@ gh pr create        # Create pull request
 
 - [x] Install Ghostty: `brew install --cask ghostty`
 - [x] Configure Ghostty (padding, option-as-alt, copy-on-select, auto-update)
-- [x] Create ~/.zshrc with aliases (navigation, git, safety, claude)
+- [x] Create ~/.zshrc with aliases (navigation, git, safety)
 - [x] Reload shell: `source ~/.zshrc`
 - [ ] Install fzf: `brew install fzf && $(brew --prefix)/opt/fzf/install`
 - [ ] Install bat: `brew install bat`
