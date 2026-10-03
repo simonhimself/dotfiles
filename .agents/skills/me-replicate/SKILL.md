@@ -1,5 +1,5 @@
 ---
-name: replicate
+name: me-replicate
 description: Search, explore, and run ML models on Replicate via plugin tools
 ---
 

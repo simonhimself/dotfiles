@@ -1,5 +1,5 @@
 ---
-name: readme-front-door
+name: me-readme-front-door
 description: Create or improve a project README with a benefit-first introduction, useful visual or example, clear try/install path, and linked technical details, and keep the GitHub About section (description, website, topics) in sync. Use when asked to write, rewrite, standardize, or improve a README or repository showcase.
 ---
 

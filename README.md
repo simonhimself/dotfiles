@@ -79,10 +79,10 @@ Since the config files are symlinked, any edits you make (e.g., to `~/.zshrc`) a
 
 ## README workflow
 
-The shared `readme-front-door` skill and OpenCode `/readme` command are regular
+The shared `me-readme-front-door` skill and OpenCode `/readme` command are regular
 files in this repository:
 
-- `.agents/skills/1-my-skills/readme-front-door/SKILL.md`
+- `.agents/skills/me-readme-front-door/SKILL.md`
 - `.config/opencode/commands/readme.md`
 
 The existing installer exposes them through the `~/.agents` and
@@ -91,7 +91,7 @@ project-template checkout. OpenCode 2 reloads skills and commands
 automatically when these files change.
 
 In the project you want to improve, run `/readme` or ask your agent to use the
-`readme-front-door` skill. For a repository that is only on GitHub, provide its
+`me-readme-front-door` skill. For a repository that is only on GitHub, provide its
 URL and explicitly ask the agent to clone it and work in that checkout.
 
 The public [project-template](https://github.com/simonhimself/project-template)
