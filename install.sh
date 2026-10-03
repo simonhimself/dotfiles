@@ -72,6 +72,10 @@ fi
 # OpenCode config
 create_symlink "$DOTFILES_DIR/.config/opencode" "$HOME/.config/opencode"
 
+# Claude Code user settings (only this file; the rest of ~/.claude is runtime state)
+mkdir -p "$HOME/.claude"
+create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+
 # Shared agent skills (installed via `npx skills add ...`)
 # This location is read by OpenCode, Claude Code, Cursor, and other agents
 create_symlink "$DOTFILES_DIR/.agents" "$HOME/.agents"

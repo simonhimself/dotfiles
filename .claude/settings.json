@@ -1,0 +1,23 @@
+{
+  "enableWorkflows": true,
+  "enabledPlugins": {
+    "cloudflare@cloudflare": true
+  },
+  "extraKnownMarketplaces": {
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    }
+  },
+  "theme": "dark",
+  "switchModelsOnFlag": false,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "tui": "fullscreen",
+  "permissions": {
+    "allow": []
+  },
+  "skipWorkflowUsageWarning": true
+}
