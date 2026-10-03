@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "allow": []
+  },
   "enableWorkflows": true,
   "enabledPlugins": {
     "cloudflare@cloudflare": true
@@ -11,13 +14,11 @@
       }
     }
   },
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "switchModelsOnFlag": false,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "tui": "fullscreen",
-  "permissions": {
-    "allow": []
-  },
-  "skipWorkflowUsageWarning": true
+  "advisorModel": "fable"
 }
