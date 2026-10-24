@@ -1,7 +1,7 @@
 ---
 description: Execution worker for bounded research, implementation, and verification delegated by the orchestrator, working sequentially or in parallel with independently scoped workers.
 mode: subagent
-model: claude-code/claude-sonnet-5-5#high
+model: claude-code/claude-opus-5-5[1m]#medium
 permissions:
   - { action: subagent, resource: "*", effect: deny }
   - { action: question, resource: "*", effect: deny }

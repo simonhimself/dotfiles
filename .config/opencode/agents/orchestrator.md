@@ -1,7 +1,7 @@
 ---
 description: Primary Claude Opus orchestrator that delegates execution to fresh, focused worker subagents, favors useful parallelism, and owns review and final acceptance.
 mode: primary
-model: claude-code/claude-opus-5-5[1m]#high
+model: claude-code/claude-opus-5-5[1m]#medium
 permissions:
   - { action: subagent, resource: "*", effect: deny }
   - { action: subagent, resource: worker, effect: allow }
